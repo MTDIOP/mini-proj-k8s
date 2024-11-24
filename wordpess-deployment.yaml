@@ -23,6 +23,8 @@ spec:
         env:
         - name: WORDPRESS_DB_HOST
           value: wordpress-mysql
+        - name: WORDPRESS_DB_NAME
+          value: eazytraining
         - name: WORDPRESS_DB_PASSWORD
           value: eazy
         - name: WORDPRESS_DB_USER
@@ -31,9 +33,10 @@ spec:
         - containerPort: 80
           name: wordpress
         volumeMounts:
-        - name: wordpress-mp-claim-storage
+        - name: data-volume
           mountPath: /var/www/html
       volumes:
-      - name: wordpress-mp-claim-storage
-        persistentVolumeClaim:
-          claimName: mysql-pv-mp-claim
+        - name: data-volume
+          hostPath: 
+            path: /data
+            type: DirectoryOrCreate
