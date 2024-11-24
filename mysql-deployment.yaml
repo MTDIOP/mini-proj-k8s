@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wordpress-mysql
+  labels:
+    app: wordpress
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+        app: wordpress
+        tier: mysql
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: wordpress
+        tier: mysql
+    spec:
+      containers:
+      - image: mysql:8.0
+        name: bdd
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value : password
+        - name: MYSQL_DATABASE
+          value: eazytraining
+        - name: MYSQL_USER
+          value: eazy
+        - name: MYSQL_PASSWORD
+          value: eazy
+        ports:
+        - containerPort: 3306
+          name: mysql
+        volumeMounts:
+        - name: mysql-mp-claim-storage
+          mountPath: /var/lib/mysql
+      volumes:
+      - name:  mysql-mp-claim-storage
+        persistentVolumeClaim:
+          claimName: mysql-pv-mp-claim
+
+
