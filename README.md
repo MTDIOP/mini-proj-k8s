@@ -1,15 +1,18 @@
 # mini-proj-k8s
 ----------------------------Create namespace ---------------------
+
 kubectl create namespace production
 
 ![alt text](images/namespace.png)
 
 ----------------------------Create PV ---------------------
+
 kubectl create -f pv.yaml -n production
 
 persistentvolume/mysql-pv-mp created
 
 ![alt text](images/pv.png)
+
 ----------------------------Create PVC ---------------------
 
 kubectl create -f pvc.yaml -n production
