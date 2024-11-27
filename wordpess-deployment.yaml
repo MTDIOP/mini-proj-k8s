@@ -22,7 +22,7 @@ spec:
         name: wordpress
         env:
         - name: WORDPRESS_DB_HOST
-          value: wordpress-mysql
+          value: service-mp-mysql
         - name: WORDPRESS_DB_NAME
           value: eazytraining
         - name: WORDPRESS_DB_PASSWORD

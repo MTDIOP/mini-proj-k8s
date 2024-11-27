@@ -1,13 +1,18 @@
 # mini-proj-k8s
+----------------------------Create namespace ---------------------
+kubectl create namespace production
+
+![alt text](images/namespace.png)
+
 ----------------------------Create PV ---------------------
-kubectl create -f pv.yaml
+kubectl create -f pv.yaml -n production
 
 persistentvolume/mysql-pv-mp created
 
 ![alt text](images/pv.png)
 ----------------------------Create PVC ---------------------
 
-kubectl create -f pvc.yaml
+kubectl create -f pvc.yaml -n production
 
 persistentvolumeclaim/mysql-pv-mp-claim created
 
@@ -15,11 +20,11 @@ persistentvolumeclaim/mysql-pv-mp-claim created
 
 ----------------------------Mysql & Wordpress deployement---------------------
 
-kubectl create -f mysql-deployment.yaml
+kubectl create -f mysql-deployment.yaml -n production
 
 deployment.apps/mysql created
 
-kubectl apply -f wordpess.yaml 
+kubectl apply -f wordpess-deployment.yaml -n production
 
 deployment.apps/wordpress created
 
@@ -27,19 +32,15 @@ deployment.apps/wordpress created
 
 ----------------------------Mysql  & Wordpress Services----------------------
 
-kubectl create -f service-mysql.yml 
+kubectl create -f service-mysql.yml -n production
 
 service/service-mp-mysql created
 
-kubectl create -f service-wordpress.yml
+kubectl create -f service-wordpress.yml -n production
 
 service/service-mp-wordpress created
 
 ![alt text](images/services.png)
-
-----------------------------Exposition du port ----------------------------
-
-![alt text](images/image-1.png)
 
 ----------------------------Connexion à l'application----------------------------
 
